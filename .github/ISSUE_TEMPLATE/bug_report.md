@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: bug
+labels: bug, question
 assignees: ''
 
 ---
@@ -14,6 +14,7 @@ assignees: ''
     - Steam Emulator achievements
     - Xbox 360 achievements
     - ShadPS4 achievements
+    - AW Next achivements
 - If the issue exists in the original repository, please report it there instead.
 
 **Describe the bug**
