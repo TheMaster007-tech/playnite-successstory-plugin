@@ -78,7 +78,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="0.9.9">
+    <PackageReference Include="AngleSharp" Version="0.9.11">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
