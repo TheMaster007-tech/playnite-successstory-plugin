@@ -35,57 +35,6 @@ jobs:
           fetch-depth: 0
 
      
-      - name: Restore compatible shared dependency
-        shell: pwsh
-        run: |
-          $submodule = "source/playnite-plugincommon"
-
-          # Fetch the historical upstream release
-          git fetch https://github.com/Lacro59/playnite-successstory-plugin.git refs/tags/v3.4
-
-          if ($LASTEXITCODE -ne 0) {
-            throw "Failed to fetch upstream release."
-          }
-
-          # Read the exact submodule commit used by v3.4
-          $entry = git ls-tree FETCH_HEAD source/playnite-plugincommon
-
-          if (!$entry) {
-            throw "Could not locate the historical submodule."
-          }
-
-          $commit = ($entry -split '\s+')[2]
-
-          Write-Host "Original SuccessStory v3.4 dependency: $commit"
-
-          # Restore that exact dependency
-          git -C $submodule fetch origin $commit
-
-          if ($LASTEXITCODE -ne 0) {
-            throw "Failed to fetch shared dependency."
-          }
-
-          git -C $submodule checkout --detach $commit
-
-          if ($LASTEXITCODE -ne 0) {
-            throw "Failed to checkout shared dependency."
-          }
-
-          git -C $submodule submodule update --init --recursive
-
-          if ($LASTEXITCODE -ne 0) {
-            throw "Failed to initialize nested dependencies."
-          }
-
-          $requiredFile = "$submodule/CommonPluginsControls/Stores/Gog/PanelView.xaml"
-
-          if (!(Test-Path $requiredFile)) {
-            throw "Historical dependency does not contain GOG controls."
-          }
-
-          Write-Host "Historical dependency restored:"
-          git -C $submodule rev-parse HEAD
-
 
       - name: Set extension version
         shell: pwsh
@@ -154,28 +103,7 @@ jobs:
 
           $xml.Save((Resolve-Path $project).Path)
 
-      - name: Verify build environment
-        shell: pwsh
-        run: |
-          Write-Host "Repository: $env:GITHUB_REPOSITORY"
-          Write-Host "Branch: $env:GITHUB_REF"
-          Write-Host "Commit: $env:GITHUB_SHA"
-
-          Write-Host "Recorded submodule:"
-          git ls-tree HEAD source/playnite-plugincommon
-
-          Write-Host "Actual submodule:"
-          git -C source/playnite-plugincommon rev-parse HEAD
-
-          $file = "source/playnite-plugincommon/CommonPluginsControls/Stores/GameJolt/PanelView.xaml"
-
-          if (!(Test-Path -LiteralPath $file)) {
-            throw "GameJolt PanelView.xaml is missing."
-          }
-
-          Write-Host "GameJolt file exists:"
-          Get-Item $file
-
+  
       - name: Restore and build
         shell: pwsh
         run: |
