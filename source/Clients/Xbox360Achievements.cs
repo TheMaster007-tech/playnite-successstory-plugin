@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using CommonPluginsShared.Extensions;
 using CommonPlayniteShared.Common;
-using SteamKit2.GC.TF2.Internal;
 using CommonPluginsShared.Models;
 using System.Threading.Tasks;
 using System.Windows;

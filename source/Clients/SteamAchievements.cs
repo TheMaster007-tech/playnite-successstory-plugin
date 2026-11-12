@@ -5,8 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Linq;
-using AngleSharp.Dom.Html;
-using AngleSharp.Parser.Html;
+using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
 using Playnite.SDK.Models;
 using System.Globalization;
 using CommonPluginsShared.Models;
@@ -540,7 +540,7 @@ namespace SuccessStory.Clients
             {
                 searchUrl = string.Format(UrlSearch, WebUtility.UrlEncode(name));
                 string response = Web.DownloadStringData(searchUrl).GetAwaiter().GetResult();
-                IHtmlDocument htmlDocument = new HtmlParser().Parse(response);
+                IHtmlDocument htmlDocument = new HtmlParser().ParseDocument(response);
 
                 int index = 0;
                 foreach (IElement gameElem in htmlDocument.QuerySelectorAll(".search_result_row"))

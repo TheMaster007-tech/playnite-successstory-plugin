@@ -1,6 +1,6 @@
 ﻿using AngleSharp.Dom;
-using AngleSharp.Dom.Html;
-using AngleSharp.Parser.Html;
+using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
 using CommonPlayniteShared.Common;
 using CommonPluginsShared;
 using CommonPluginsShared.Extensions;
@@ -276,7 +276,7 @@ namespace SuccessStory.Clients
                     try
                     {
                         var parserCheck = new HtmlParser();
-                        var docCheck = parserCheck.Parse(dataExophase);
+                        var docCheck = parserCheck.ParseDocument(dataExophase);
                         hasAchievementLists = (docCheck.QuerySelectorAll("ul.achievement, ul.trophy, ul.challenge")?.Length ?? 0) > 0;
                     }
                     catch (Exception ex)
@@ -740,7 +740,7 @@ namespace SuccessStory.Clients
         private List<Achievement> ParseData(string data)
         {
             HtmlParser parser = new HtmlParser();
-            IHtmlDocument htmlDocument = parser.Parse(data);
+            IHtmlDocument htmlDocument = parser.ParseDocument(data);
 
             List<Achievement> allAchievements = new List<Achievement>();
             IHtmlCollection<IElement> sectionAchievements = htmlDocument.QuerySelectorAll("ul.achievement, ul.trophy, ul.challenge");

@@ -1,6 +1,6 @@
 ﻿using AngleSharp.Dom;
-using AngleSharp.Dom.Html;
-using AngleSharp.Parser.Html;
+using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
 using CommonPluginsShared;
 using CommonPluginsShared.Extensions;
 using Playnite.SDK;
@@ -79,7 +79,7 @@ namespace SuccessStory.Clients
                 }
 
                 HtmlParser parser = new HtmlParser();
-                IHtmlDocument htmlDocument = parser.Parse(response);
+                IHtmlDocument htmlDocument = parser.ParseDocument(response);
 
                 if (response.IndexOf("There are no matching search results, please change your search terms") > -1)
                 {
@@ -187,7 +187,7 @@ namespace SuccessStory.Clients
 
 
                 HtmlParser parser = new HtmlParser();
-                IHtmlDocument htmlDocument = parser.Parse(response);
+                IHtmlDocument htmlDocument = parser.ParseDocument(response);
 
                 int numberDataCount = 0;
                 var dataCountElements = htmlDocument.QuerySelectorAll("div.game div.l1 div");
@@ -304,7 +304,7 @@ namespace SuccessStory.Clients
                 }
 
                 HtmlParser parser = new HtmlParser();
-                IHtmlDocument doc = parser.Parse(response);
+                IHtmlDocument doc = parser.ParseDocument(response);
 
                 Uri baseUri = null;
                 try

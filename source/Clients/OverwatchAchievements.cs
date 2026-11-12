@@ -1,6 +1,6 @@
 ﻿using AngleSharp.Dom;
-using AngleSharp.Dom.Html;
-using AngleSharp.Parser.Html;
+using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
 using CommonPluginsShared;
 using CommonPluginsShared.Extensions;
 using CommonPluginsShared.Models;
@@ -90,8 +90,8 @@ namespace SuccessStory.Clients
                     }
 
                     HtmlParser parser = new HtmlParser();
-                    IHtmlDocument htmlDocument = parser.Parse(data);
-                    IHtmlDocument htmlDocumentEn = parser.Parse(dataEn);
+                    IHtmlDocument htmlDocument = parser.ParseDocument(data);
+                    IHtmlDocument htmlDocumentEn = parser.ParseDocument(dataEn);
 
                     IElement SectionAchievements = htmlDocument.QuerySelector("#achievements-section");
 

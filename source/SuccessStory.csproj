@@ -78,7 +78,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="0.9.11">
+    <PackageReference Include="AngleSharp" Version="1.5.0">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
@@ -89,10 +89,10 @@
     <PackageReference Include="PlayniteSDK" Version="6.13.0">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="protobuf-net" Version="2.0.0.668">
+    <PackageReference Include="protobuf-net" Version="3.4.40">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="SteamKit2" Version="1.8.3">
+    <PackageReference Include="SteamKit2" Version="2.5.0">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="System.IO.Abstractions" Version="23.0.0">

@@ -1,5 +1,4 @@
-﻿using AngleSharp.Dom.Html;
-using AngleSharp.Parser.Html;
+using AngleSharp.Html.Parser;
 using CommonPluginsShared;
 using CommonPluginsShared.Extensions;
 using CommonPluginsShared.Models;
