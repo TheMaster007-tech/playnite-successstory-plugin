@@ -843,38 +843,6 @@ namespace SuccessStory
             // eFMann - eddits plugin version             
             PluginSettings.Settings.HasUpdatedVersion = false;
 
-            if (!PluginSettings.Settings.HasUpdatedVersion)
-            {
-                try
-                {
-                    string extensionPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "extension.yaml");
-
-                    if (File.Exists(extensionPath))
-                    {
-                        string content = File.ReadAllText(extensionPath);
-
-                        // Choose what to rename the version to...
-                        string pattern = @"Version: .*";
-                        string replacement = "Version: 3.4.1-eFM";
-                        string updatedContent = content.Replace(content.Split('\n').First(x => x.StartsWith("Version:")), replacement);
-
-
-                        File.WriteAllText(extensionPath, updatedContent);
-
-                        PluginSettings.Settings.HasUpdatedVersion = true;
-                        SavePluginSettings(PluginSettings.Settings);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Common.LogError(ex, false, $"Failed to update version. Details: {ex.Message}\nStack: {ex.StackTrace}", true, PluginDatabase.PluginName);
-                }
-            }
-
-            var d = SuccessStoryStats.GetCountUnlocked(StatsType.Day, null, null, false, false);
-            var e = SuccessStoryStats.GetCountUnlocked(StatsType.Month, null, null, false, false);
-            var f = SuccessStoryStats.GetCountUnlocked(StatsType.Source, null, null, false, false);
-
             // StoreAPI intialization
             SteamApi = new SteamApi(PluginDatabase.PluginName, PlayniteTools.ExternalPlugin.SuccessStory);
             EpicApi = new EpicApi(PluginDatabase.PluginName, PlayniteTools.ExternalPlugin.SuccessStory);

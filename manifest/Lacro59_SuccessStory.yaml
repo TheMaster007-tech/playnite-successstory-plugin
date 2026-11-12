@@ -408,3 +408,12 @@ Packages:
       - 'Added: ShadPS4 Achievements (see wiki)'
       - 'Fixed: RPCS3 Achievements for games like Skate 3'
       - 'Optimised: RPCS3 achievements rarity will match users specified settings' 
+
+  - Version: 3.5.2
+    RequiredApiVersion: 6.11.0
+    ReleaseDate: 2026-11-12
+    PackageUrl: https://github.com/TheMaster007-tech/playnite-successstory-plugin/releases/download/v3.5.2/SuccessStory-3.5.2.pext
+    Changelog:
+      - 'The master changelog:'
+      
+      - 'Added: Achivment Watcher Next
