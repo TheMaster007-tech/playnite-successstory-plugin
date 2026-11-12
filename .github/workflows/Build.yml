@@ -154,6 +154,28 @@ jobs:
 
           $xml.Save((Resolve-Path $project).Path)
 
+      - name: Verify build environment
+        shell: pwsh
+        run: |
+          Write-Host "Repository: $env:GITHUB_REPOSITORY"
+          Write-Host "Branch: $env:GITHUB_REF"
+          Write-Host "Commit: $env:GITHUB_SHA"
+
+          Write-Host "Recorded submodule:"
+          git ls-tree HEAD source/playnite-plugincommon
+
+          Write-Host "Actual submodule:"
+          git -C source/playnite-plugincommon rev-parse HEAD
+
+          $file = "source/playnite-plugincommon/CommonPluginsControls/Stores/GameJolt/PanelView.xaml"
+
+          if (!(Test-Path -LiteralPath $file)) {
+            throw "GameJolt PanelView.xaml is missing."
+          }
+
+          Write-Host "GameJolt file exists:"
+          Get-Item $file
+
       - name: Restore and build
         shell: pwsh
         run: |
