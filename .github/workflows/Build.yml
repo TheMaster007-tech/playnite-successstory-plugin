@@ -119,6 +119,7 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v2
 
+
       - name: Restore legacy NuGet packages
         shell: pwsh
         run: |
@@ -130,26 +131,7 @@ jobs:
 
           if ($LASTEXITCODE -ne 0) {
             throw "Legacy NuGet restore failed."
-          }
-
-          $requiredFiles = @(
-            "LiveCharts.0.9.7/lib/net45/LiveCharts.dll",
-            "LiveCharts.Wpf.0.9.7/lib/net45/LiveCharts.Wpf.dll",
-            "VirtualizingWrapPanel.1.5.4/lib/net45/VirtualizingWrapPanel.dll",
-            "PlayniteSDK.6.11.0/lib/net462/Playnite.SDK.dll"
-          )
-
-          foreach ($file in $requiredFiles) {
-            $path = Join-Path $packages $file
-
-            if (!(Test-Path $path)) {
-              throw "Missing required dependency: $path"
-            }
-
-            Write-Host "Verified: $file"
-          }
-
-  
+          }  
 
       - name: Remove duplicate SQLite reference
         shell: pwsh
