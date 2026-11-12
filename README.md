@@ -1,13 +1,22 @@
 [![Crowdin](https://badges.crowdin.net/playnite-extensions/localized.svg)](https://crowdin.com/project/playnite-extensions)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/Lacro59/playnite-successstory-plugin?cacheSeconds=5000&logo=github)](https://github.com/Lacro59/playnite-successstory-plugin/releases/latest)
-[![GitHub Release Date](https://img.shields.io/github/release-date/Lacro59/playnite-successstory-plugin?cacheSeconds=5000)](https://github.com/Lacro59/playnite-successstory-plugin/releases/latest)
-[![Github Lastest Releases](https://img.shields.io/github/downloads/Lacro59/playnite-successstory-plugin/latest/total.svg)]()
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Lacro59/playnite-successstory-plugin)](https://github.com/Lacro59/playnite-successstory-plugin/graphs/commit-activity)
-[![GitHub contributors](https://img.shields.io/github/contributors/Lacro59/playnite-successstory-plugin?cacheSeconds=5000)](https://github.com/Lacro59/playnite-successstory-plugin/graphs/contributors)
-[![GitHub](https://img.shields.io/github/license/Lacro59/playnite-successstory-plugin?cacheSeconds=50000)](https://github.com/Lacro59/playnite-successstory-plugin/blob/master/LICENSE)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/TheMaster007/playnite-successstory-plugin?cacheSeconds=5000&logo=github)](https://github.com/TheMaster007/playnite-successstory-plugin/releases/latest)
+[![GitHub Release Date](https://img.shields.io/github/release-date/TheMaster007/playnite-successstory-plugin?cacheSeconds=5000)](https://github.com/TheMaster007/playnite-successstory-plugin/releases/latest)
+[![Github Lastest Releases](https://img.shields.io/github/downloads/TheMaster007/playnite-successstory-plugin/latest/total.svg)]()
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/TheMaster007/playnite-successstory-plugin)](https://github.com/TheMaster007/playnite-successstory-plugin/graphs/commit-activity)
+[![GitHub contributors](https://img.shields.io/github/contributors/TheMaster007/playnite-successstory-plugin?cacheSeconds=5000)](https://github.com/TheMaster007/playnite-successstory-plugin/graphs/contributors)
+[![GitHub](https://img.shields.io/github/license/TheMaster007/playnite-successstory-plugin?cacheSeconds=50000)](https://github.com/Lacro59/playnite-successstory-plugin/blob/master/LICENSE)
 
 # playnite-successstory-plugin
 Extension for [Playnite](https://playnite.link).
+
+Fork by TheMaster007: Improving Steam Emulator Achievements
+
+This fork of the SuccessStory plugin specifically attempts to fix and enhance Steam Emulator Achievement support. Please visit the Wiki Page on how to get started.
+Key Enhancements:
+
+    Achievement Watcher Next Integration
+        Optionally prefer achievement data from Achievement Watcher Next through its local WebSocket bridge, while keeping achievements in SuccessStory's database and UI.
+        Configure the bridge port and optional user:password in SuccessStory settings. AW Next is checked before the manual provider picker and on manual refresh; if it is unavailable or has no matching game, the existing provider remains the fallback.
 
 ## Information
 The plugin gets localised achievements (if they exist) or manual achievements.
