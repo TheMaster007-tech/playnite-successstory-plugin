@@ -3,6 +3,16 @@
 
 [Originals]/
 
+# Temporary WPF compilation projects
+*_wpftmp.csproj
+
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# NuGet packages
+source/packages/
+
 # User-specific files
 *.suo
 *.user
