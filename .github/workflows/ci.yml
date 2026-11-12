@@ -1,0 +1,110 @@
+
+name: CI - Build validation
+
+on:
+  pull_request:
+    branches:
+      - master
+
+  push:
+    branches:
+      - master
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build SuccessStory
+    runs-on: windows-2022
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Verify shared dependency
+        shell: pwsh
+        run: |
+          $expected = git rev-parse HEAD:source/playnite-plugincommon
+          $actual = git -C source/playnite-plugincommon rev-parse HEAD
+
+          Write-Host "Expected dependency: $expected"
+          Write-Host "Actual dependency:   $actual"
+
+          if ($expected -ne $actual) {
+            throw "Submodule version mismatch."
+          }
+
+          $file = "source/playnite-plugincommon/CommonPluginsControls/Stores/GameJolt/PanelView.xaml"
+
+          if (!(Test-Path $file)) {
+            throw "GameJolt control is missing."
+          }
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore legacy NuGet packages
+        shell: pwsh
+        run: |
+          if (Test-Path "source/packages.config") {
+            nuget restore source/packages.config `
+              -PackagesDirectory "$PWD/source/packages" `
+              -NonInteractive
+
+            if ($LASTEXITCODE -ne 0) {
+              throw "NuGet restore failed."
+            }
+          }
+
+      - name: Build SuccessStory
+        shell: pwsh
+        run: |
+          msbuild source/SuccessStory.sln `
+            /restore `
+            /p:RestorePackagesConfig=true `
+            /p:Configuration=Release `
+            /p:PostBuildEvent= `
+            /m `
+            /v:minimal
+
+          if ($LASTEXITCODE -ne 0) {
+            throw "Compilation failed."
+          }
+
+      - name: Verify build output
+        shell: pwsh
+        run: |
+          $output = "source/bin/Release"
+
+          if (!(Test-Path "$output/SuccessStory.dll")) {
+            throw "SuccessStory.dll was not generated."
+          }
+
+          if (!(Test-Path "$output/extension.yaml")) {
+            Copy-Item "source/extension.yaml" `
+              "$output/extension.yaml" -Force
+          }
+
+          Write-Host "Build successful."
+          Get-ChildItem $output
+
+      - name: Upload test build
+        uses: actions/upload-artifact@v4
+        with:
+          name: SuccessStory-CI-${{ github.run_number }}
+          path: source/bin/Release/
+          if-no-files-found: error
+          retention-days: 3
