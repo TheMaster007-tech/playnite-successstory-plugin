@@ -116,50 +116,11 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v2
-
-
-      - name: Restore legacy NuGet packages
-        shell: pwsh
-        run: |
-          $packages = Join-Path $PWD "source/packages"
-
-          nuget restore source/packages.config `
-            -PackagesDirectory $packages `
-            -NonInteractive
-
-          if ($LASTEXITCODE -ne 0) {
-            throw "Legacy NuGet restore failed."
-          }  
-
-      - name: Remove duplicate SQLite reference
-        shell: pwsh
-        run: |
-          $project = "source/SuccessStory.csproj"
-          [xml]$xml = Get-Content $project -Raw
-
-          $ns = New-Object System.Xml.XmlNamespaceManager($xml.NameTable)
-          $ns.AddNamespace("msb", $xml.DocumentElement.NamespaceURI)
-
-          $duplicates = $xml.SelectNodes(
-            "//msb:PackageReference[@Include='System.Data.SQLite']",
-            $ns
-          )
-
-          for ($i = 1; $i -lt $duplicates.Count; $i++) {
-            $node = $duplicates[$i]
-            $node.ParentNode.RemoveChild($node) | Out-Null
-          }
-
-          $xml.Save((Resolve-Path $project).Path)
-
       - name: Restore and build
         shell: pwsh
         run: |
           msbuild source/SuccessStory.sln `
             /restore `
-            /p:RestorePackagesConfig=true `
             /p:Configuration=Release `
             /p:PostBuildEvent= `
             /m `
