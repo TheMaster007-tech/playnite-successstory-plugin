@@ -78,7 +78,7 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="0.9.9">
+    <PackageReference Include="AngleSharp" Version="0.9.11">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
@@ -95,13 +95,13 @@
     <PackageReference Include="SteamKit2" Version="1.8.3">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.227">
+    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.256">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="System.ValueTuple" Version="4.5.0">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="VirtualizingWrapPanel" Version="1.5.4" />
+    <PackageReference Include="VirtualizingWrapPanel" Version="1.5.8" />
     <PackageReference Include="YamlDotNet" Version="5.4.0">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
