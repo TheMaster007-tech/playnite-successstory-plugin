@@ -445,3 +445,10 @@ Packages:
       - 'Improved: Steam, Epic, GOG, Exophase and TrueAchievements provider stability and fallback logic'
       - 'Fixed: PS4/ShadPS4 timestamp conversion (Unix 10-digit support) (thanks to CaioSPereira21)'
       - 'Fixed: Potential NullReferenceException and various minor issues (thanks to Wibias)'
+  - Version: 3.8.1
+    RequiredApiVersion: 6.18.0
+    ReleaseDate: 2026-12-11
+    PackageUrl: https://github.com/Lacro59/playnite-successstory-plugin/releases/download/v3.8.1/playnite-successstory-plugin_3_8_1.pext
+    Changelog:
+      -  rebased on successstory 3.7.1
+      -  updated dependencies
