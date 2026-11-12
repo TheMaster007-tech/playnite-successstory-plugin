@@ -4,14 +4,16 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 
+
 version: 2
 
 updates:
-  # Keep GitHub Actions up to date
+  # GitHub Actions dependencies
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+
     open-pull-requests-limit: 3
 
     groups:
@@ -19,23 +21,28 @@ updates:
         patterns:
           - "*"
 
-  # Monitor C# / NuGet dependencies
+  # NuGet dependencies
   - package-ecosystem: "nuget"
     directory: "/source"
     schedule:
       interval: "monthly"
+
     open-pull-requests-limit: 3
 
+    exclude-paths:
+      - "**/*_wpftmp.csproj"
+      - "bin/**"
+      - "obj/**"
+      - "packages/**"
+      - "playnite-plugincommon/**"
+
     ignore:
-      # Playnite controls the SDK compatibility
       - dependency-name: "PlayniteSDK"
 
-      # Avoid major breaking changes
       - dependency-name: "*"
         update-types:
           - "version-update:semver-major"
 
-      # Legacy WPF controls
       - dependency-name: "LiveCharts"
       - dependency-name: "LiveCharts.Wpf"
       - dependency-name: "VirtualizingWrapPanel"
@@ -46,4 +53,3 @@ updates:
           - "*"
         update-types:
           - "patch"
-
