@@ -95,7 +95,7 @@
     <PackageReference Include="SteamKit2" Version="1.8.3">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="System.IO.Abstractions" Version="2.1.0.227">
+    <PackageReference Include="System.IO.Abstractions" Version="23.0.0">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="System.ValueTuple" Version="4.6.2">
