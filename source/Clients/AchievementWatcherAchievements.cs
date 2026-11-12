@@ -299,14 +299,8 @@ namespace SuccessStory.Clients
             }
 
             var steamAppId = string.Empty;
-            int forcedAppId;
-            if (PluginDatabase.PluginSettings.Settings.ForcedSteamAppIds != null &&
-                PluginDatabase.PluginSettings.Settings.ForcedSteamAppIds.TryGetValue(game.Id, out forcedAppId) &&
-                forcedAppId > 0)
-            {
-                steamAppId = forcedAppId.ToString(CultureInfo.InvariantCulture);
-            }
-            else if (game.PluginId == SteamLibraryId && !string.IsNullOrWhiteSpace(game.GameId))
+
+            if (game.PluginId == SteamLibraryId && !string.IsNullOrWhiteSpace(game.GameId))
             {
                 int parsedAppId;
                 if (int.TryParse(game.GameId, NumberStyles.None, CultureInfo.InvariantCulture, out parsedAppId) && parsedAppId > 0)
